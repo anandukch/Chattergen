@@ -11,7 +11,6 @@ from chattergen.utils import (
     generate_response,
     generation_config,
     safety_settings,
-    inital_history,
 )
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -20,13 +19,16 @@ genai_model = genai.GenerativeModel(
     model_name="gemini-pro",
     generation_config=generation_config,
     safety_settings=safety_settings,
+    
 )
+
 model = genai_model.start_chat(history=[])
 console = Console()
 
 
 def start():
     """Start the ChatterGen CLI."""
+    
     f = Figlet(font="slant")
     console.print(f.renderText("ChatterGen"), style="bold green")
     console.print(

@@ -10,23 +10,23 @@ To install ChatterGen, follow these steps:
 
 1. Clone the repository:
     ```shell
-    git clone https://github.com/your-username/ChatterGen.git
+    git clone https://github.com/anandukch/ChatterGen.git
     ```
 
-2. Navigate to the project directory:
+2. Build the poetry project
     ```shell
-    cd ChatterGen
+    poetry build
     ```
 
 3. Install the required dependencies:
     ```shell
-    pip install -r requirements.txt
+    poetry install
     ```
 
-<!-- ## Usage 🚀 -->
+## Usage 🚀
 
-<!-- To use ChatterGen, run the following command in your terminal: -->
+To use ChatterGen, run the following command in your terminal:
 
-
-
-
+```shell
+    chattergen
+```
