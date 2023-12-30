@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "chattergen"
+version = "0.1.0"
+description = "Get the power of chatgpt in terminal"
+authors = ["anandukch <anandukch@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+google-generativeai = "^0.3.2"
+pyright = "^1.1.343"
+python-dotenv = "^1.0.0"
+pyfiglet = "^1.0.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = {version = "^24.1a1", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+chattergen = "chattergen:app.main"
