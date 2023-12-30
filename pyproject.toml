@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "chattergen"
-version = "0.1.0"
+version = "0.1.2"
 description = "Get the power of chatgpt in terminal"
 authors = ["anandukch <anandukch@gmail.com>"]
 readme = "README.md"
