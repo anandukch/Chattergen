@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 import os
+import sys
 from rich.console import Console
 from rich.prompt import Prompt
 from pyfiglet import Figlet
@@ -11,29 +12,45 @@ from chattergen.utils import (
     generate_response,
     generation_config,
     safety_settings,
+    process_args,
+    read_config_file
 )
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=GOOGLE_API_KEY)
-genai_model = genai.GenerativeModel(
-    model_name="gemini-pro",
-    generation_config=generation_config,
-    safety_settings=safety_settings,
+def create_model(api_key:str):
+    genai.configure(api_key=api_key)
+    genai_model = genai.GenerativeModel(
+        model_name="gemini-pro",
+        generation_config=generation_config,
+        safety_settings=safety_settings,
+        
+    )
+    return genai_model.start_chat(history=[])
+# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# genai.configure(api_key=GOOGLE_API_KEY)
+# genai_model = genai.GenerativeModel(
+#     model_name="gemini-pro",
+#     generation_config=generation_config,
+#     safety_settings=safety_settings,
     
-)
+# )
 
-model = genai_model.start_chat(history=[])
+# model = genai_model.start_chat(history=[])
 console = Console()
 
 
 def start():
     """Start the ChatterGen CLI."""
-    
+
+    print("\033c")
+    if len(sys.argv) > 1:
+        process_args(sys.argv)
+    model = create_model(read_config_file())
     f = Figlet(font="slant")
     console.print(f.renderText("ChatterGen"), style="bold green")
     console.print(
         "Welcome to ChatterGen! Type your question or prompt.", style="bold green"
     )
+
 
     while True:
         prompt = Prompt.ask("You ")

@@ -27,6 +27,4 @@ To install ChatterGen, follow these steps:
 
 To use ChatterGen, run the following command in your terminal:
 
-```shell
-    chattergen
-```
+1. Dev
