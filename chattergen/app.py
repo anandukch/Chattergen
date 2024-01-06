@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 
 load_dotenv()
-import os
 import sys
 from rich.console import Console
 from rich.prompt import Prompt
@@ -25,16 +24,7 @@ def create_model(api_key:str):
         
     )
     return genai_model.start_chat(history=[])
-# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-# genai.configure(api_key=GOOGLE_API_KEY)
-# genai_model = genai.GenerativeModel(
-#     model_name="gemini-pro",
-#     generation_config=generation_config,
-#     safety_settings=safety_settings,
-    
-# )
 
-# model = genai_model.start_chat(history=[])
 console = Console()
 
 
