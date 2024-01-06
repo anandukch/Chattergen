@@ -59,12 +59,15 @@ def read_config_file() -> str:
 
 
 def is_config_empty(file_path) -> bool:
-    with open(file_path, "r") as file:
-        content = file.read()
-        if content.strip():
-            return False
-        else:
-            return True
+    try:
+        with open(file_path, "r") as file:
+            content = file.read()
+            if content.strip():
+                return False
+            else:
+                return True
+    except FileNotFoundError:
+        return True
 
 
 def delete_file_content(file_path: str) -> None:
