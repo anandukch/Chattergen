@@ -13,7 +13,7 @@ from chattergen.utils import (
     safety_settings,
     process_args,
     read_config_file,
-    get_training_data
+    get_training_data,
 )
 
 
@@ -26,17 +26,6 @@ def create_model(api_key: str):
     )
     return genai_model.start_chat(history=[])
 
-
-# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-# genai.configure(api_key=GOOGLE_API_KEY)
-# genai_model = genai.GenerativeModel(
-#     model_name="gemini-pro",
-#     generation_config=generation_config,
-#     safety_settings=safety_settings,
-
-# )
-
-# model = genai_model.start_chat(history=[])
 console = Console()
 
 
@@ -54,11 +43,12 @@ def start():
         "Welcome to ChatterGen! Type your question or prompt.", style="bold green"
     )
 
-    generate_response(
-        model,
-        get_training_data(),
-        
-    )
+    training_data = get_training_data()
+    if training_data:
+        generate_response(
+            model,
+            get_training_data(),
+        )
 
     while True:
         prompt = Prompt.ask("You ")

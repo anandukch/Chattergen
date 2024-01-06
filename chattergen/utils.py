@@ -25,9 +25,6 @@ safety_settings = [
     },
 ]
 
-initial_prompt = "Hi! I'm ChatterGen, a chatbot that uses the Gemini Pro model from Google's GenerativeAI API. Type your question or prompt."
-inital_history = "Your name is ChatterGen, and you are a chatbot that uses the Gemini Pro model from Google's GenerativeAI API."
-
 
 def create_table(title: str, text: str, color: str = "magenta"):
     table = Table(title=title, show_header=False, padding=(1, 1, 1, 1), min_width=10)
@@ -47,7 +44,7 @@ def generate_response(model: ChatSession, prompt: str) -> str:
 def get_config_file() -> str:
     """Get the path to the config file."""
     home_dir = str(Path.home())
-    chattergen_dir = os.path.join(home_dir, "chattergen")
+    chattergen_dir = os.path.join(home_dir, ".chattergen")
     os.makedirs(chattergen_dir, exist_ok=True)
     config_file = os.path.join(chattergen_dir, "config")
     return config_file

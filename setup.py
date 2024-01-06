@@ -16,7 +16,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "chattergen=ChatterGen.app:main",
+            "chattergen=chattergen.app:main",
         ]
     },
 )
