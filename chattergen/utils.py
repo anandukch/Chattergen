@@ -3,6 +3,7 @@ from rich.markdown import Markdown
 from google.generativeai import ChatSession
 from pathlib import Path
 import os
+import json
 
 generation_config = {
     "temperature": 0.9,
@@ -51,12 +52,14 @@ def get_config_file() -> str:
     config_file = os.path.join(chattergen_dir, "config")
     return config_file
 
+
 def read_config_file() -> str:
     """Read the config file."""
     config_file = get_config_file()
     with open(config_file, "r") as file:
         content = file.read()
     return content
+
 
 def is_config_empty(file_path) -> bool:
     with open(file_path, "r") as file:
@@ -77,6 +80,7 @@ def store_file_content(file_path: str, content: str) -> str:
         f.write(content)
     return content
 
+
 def help():
     print("ChatterGen CLI")
     print("Usage: chattergen [command] [arguments]")
@@ -88,6 +92,7 @@ def help():
 
     exit(0)
 
+
 def add_key():
     key = input("Enter your Google API key: ")
     if key:
@@ -96,23 +101,22 @@ def add_key():
     else:
         print("Please enter a valid key.")
 
+
 def remove_key():
     delete_file_content(get_config_file())
     print("Key removed successfully!")
     exit(0)
 
+
 def reset_key():
     remove_key()
     add_key()
 
-arg_dict = {
-    "help": help,
-    "add": add_key,
-    "remove": remove_key,
-    "reset": reset_key
-}
 
-def process_args(args:list):
+arg_dict = {"help": help, "add": add_key, "remove": remove_key, "reset": reset_key}
+
+
+def process_args(args: list):
     if is_config_empty(get_config_file()):
         print("Please add your Google API key to use ChatterGen.")
         add_key()
@@ -123,3 +127,10 @@ def process_args(args:list):
         else:
             print("Invalid command. Use 'chattergen help' to see the list of commands.")
             exit(1)
+
+
+def get_training_data():
+    with open("train.json", "r") as file:
+        content = json.load(file)
+    return json.dumps(content)
+
